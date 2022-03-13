@@ -48,17 +48,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
         //boolean isUpdate = false;
 
-        final Bundle bundle = getArguments();
-        if (bundle != null){
-            //isUpdate = true;
-            String task = bundle.getString("task");
-            mEditText.setText(task);
 
-            if (task.length() > 0 ){
-                mSaveButton.setEnabled(false);
-            }
-
-        }
         mEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -72,6 +62,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                     mSaveButton.setBackgroundColor(Color.GRAY);
                 }else{
                     mSaveButton.setEnabled(true);
+                    mSaveButton.setTextColor(getResources().getColor(R.color.White));
                     mSaveButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 }
             }
@@ -100,6 +91,13 @@ public class AddNewTask extends BottomSheetDialogFragment {
         });
     }
 
-
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+        Activity activity = getActivity();
+        if (activity instanceof OnDialogCloseListner){
+            ((OnDialogCloseListner)activity).onDialogClose(dialog);
+        }
+    }
 
 }

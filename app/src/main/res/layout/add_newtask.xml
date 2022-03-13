@@ -29,6 +29,8 @@
         android:id="@+id/button_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar Tarea"/>
+        android:layout_below="@id/edittext"
+        android:text="Guardar Tarea"
+        android:textSize="20dp"/>
 
 </LinearLayout>
